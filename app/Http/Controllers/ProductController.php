@@ -27,4 +27,34 @@ class ProductController extends Controller
         $products = Product::all();
         return view('welcome', compact('products'));
     }
+
+    function getEditProduct(Request $request, $productId) {
+        $product = Product::findOrFail($productId);
+        return view('editProduct', compact('product'));
+    }
+
+    function updateProduct(Request $request, $productId) {
+        $validated = $request->validate([
+            'ProductName' => 'required',
+            'ProductPrice' => 'required|numeric|min:100'
+        ], [
+            'ProductName.required' => 'ProductName harus diisi.',
+            'ProductPrice.min' => 'ProductPrice tidak boleh kurang dari 100.'
+        ]);
+
+        $product = Product::findOrFail($productId);
+        $product->update($validated);
+
+        return redirect(route('home'))->with('success', 'Produk berhasil diupdate!');
+    }
+
+    function deleteProduct($productId) {
+        Product::destroy($productId);
+        return redirect(route('home'))->with('success', 'Produk berhasil dihapus!');
+    }
+
+    function searchProduct(Request $request) {
+        $products = Product::select('id', 'ProductName', 'ProductPrice')->where('ProductName', $request->SearchQuery)->orderBy('ProductPrice', 'desc')->limit(1)->get();
+        return view("welcome", compact('products'))->with('success', 'Ditemukan!');
+    }
 }
