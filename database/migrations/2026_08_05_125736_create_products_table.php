@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('CategoryId')->references('id')->on('categories')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('ProductName');
             $table->integer('ProductPrice');
             $table->timestamps();

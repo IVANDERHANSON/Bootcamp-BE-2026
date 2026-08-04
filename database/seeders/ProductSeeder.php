@@ -14,6 +14,7 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         Product::create([
+            'CategoryId' => 5,
             'ProductName' => 'Motor',
             'ProductPrice' => 20000000
         ]);

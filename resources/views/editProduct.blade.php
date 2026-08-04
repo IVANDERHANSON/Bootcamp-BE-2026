@@ -21,6 +21,22 @@
                 <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>
+
+        <div class="mb-3">
+            <label for="CategoryId" class="form-label">Product Category</label>
+            <select name="CategoryId" id="CategoryId">
+                <option value="{{ $product->category->id }}">{{ $product->category->CategoryName }}</option>
+                @foreach($categories as $category)
+                    @if ($product->category->id != $category->id)
+                        <option value="{{ $category->id }}">{{ $category->CategoryName }}</option>
+                    @endif
+                @endforeach
+            </select>
+            @error('CategoryId')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
+        </div>
+
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 @endsection
