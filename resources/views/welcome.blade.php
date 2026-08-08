@@ -23,7 +23,7 @@
     <div class="m-4">
         @forelse ($products as $product)
             <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
+                <img src="{{ asset('/storage/'.$product->ProductImage) }}" class="card-img-top" alt="{{ $product->ProductImage }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->ProductName }}</h5>
                     <p class="card-text">Product Price: {{ $product->ProductPrice }}</p>

@@ -3,7 +3,7 @@
 @section('title', ' - Edit Product')
 
 @section('content')
-    <form class="m-4" method="POST" action="{{ route('updateProduct', $product->id) }}">
+    <form class="m-4" method="POST" action="{{ route('updateProduct', $product->id) }}" enctype="multipart/form-data">
         @csrf
         
         <div class="mb-3">
@@ -33,6 +33,14 @@
                 @endforeach
             </select>
             @error('CategoryId')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="ProductImage" class="form-label">Product Image</label>
+            <input type="file" class="form-control" id="ProductImage" name="ProductImage" value="{{ $product->ProductImage }}">
+            @error('ProductImage')
                 <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>

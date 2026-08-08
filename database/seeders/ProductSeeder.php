@@ -16,7 +16,8 @@ class ProductSeeder extends Seeder
         Product::create([
             'CategoryId' => 5,
             'ProductName' => 'Motor',
-            'ProductPrice' => 20000000
+            'ProductPrice' => 20000000,
+            'ProductImage' => ''
         ]);
     }
 }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('CategoryId')->references('id')->on('categories')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('ProductName');
             $table->integer('ProductPrice');
+            $table->string('ProductImage');
             $table->timestamps();
         });
     }
