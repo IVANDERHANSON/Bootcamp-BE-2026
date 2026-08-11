@@ -33,7 +33,7 @@ class ProductController extends Controller
         $newProduct = Product::create($validated);
         $request->file('ProductImage')->storeAs($filename);
 
-        Mail::to('ivanderhansonset@gmail.com')->send(new NewProductNotif($newProduct));
+        // Mail::to('ivanderhansonset@gmail.com')->send(new NewProductNotif($newProduct));
 
         return redirect(route('home'))->with('success', 'Produk berhasil dibuat!');
     }

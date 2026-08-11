@@ -9,10 +9,25 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home') }}">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('createProduct') }}">Create Product</a>
-        </li>
+        @if (Auth::check() && Auth::user()->role == 'Admin')
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('createProduct') }}">Create Product</a>
+            </li>
+        @endif
       </ul>
+    </div>
+
+    <div>
+      @if (Auth::check())
+        <form action="{{ route('logout') }}" method="POST">
+        @csrf
+
+        <button type="submit" class="btn btn-primary">Logout</button>
+      </form>
+      @else
+        <a href="{{ route('getRegister') }}"><button class="btn btn-primary">Register</button></a>
+        <a href="{{ route('getLogin') }}"><button class="btn btn-primary">Login</button></a>
+      @endif
     </div>
   </div>
 </nav>
